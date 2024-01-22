@@ -1,0 +1,35 @@
+<div
+  class="content d-flex justify-content-center align-items-center"
+  style="flex-direction: column"
+>
+  <div class="text-start">
+    <h1>Bentornato su CODIFY&lt;/&gt;</h1>
+    <form #form="ngForm" (ngSubmit)="accedi()">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          class="form-control"
+          required
+          [(ngModel)]="email"
+        />
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          class="form-control"
+          required
+          [(ngModel)]="password"
+        />
+      </div>
+      <div class="d-flex justify-content-between align-items-baseline">
+        <button type="submit" class="btn col-12 mt-3" [disabled]="form.invalid">
+          Login
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
