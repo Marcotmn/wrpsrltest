@@ -61,7 +61,7 @@ export class AuthService {
     return this.http.post(`${this.baseURL}auth/register-user`, data);
   }
 
-  //REGISTRAZIONE USER
+  //REGISTRAZIONE ADMIN
   registrazioneAdmin(data: {
     nome: string;
     cognome: string;
@@ -77,7 +77,7 @@ export class AuthService {
   }
 
   getToken(): string | null {
-    const utenteLoggato = localStorage.getItem('user');
+    const utenteLoggato = localStorage.getItem('token');
     if (utenteLoggato) {
       const datiUtente: AuthData = JSON.parse(utenteLoggato);
       return datiUtente.accessToken;

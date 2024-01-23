@@ -1,0 +1,57 @@
+<div
+  class="content d-flex justify-content-center align-items-center"
+  style="flex-direction: column"
+>
+  <div class="text-container text-start">
+    <div class="form-container">
+      <form #rForm="ngForm" (ngSubmit)="registrazioneA(rForm)">
+        <div class="form-group">
+          <label for="nome">Nome:</label>
+          <input
+            type="text"
+            id="nome"
+            name="nome"
+            [(ngModel)]="model.nome"
+            required
+          />
+          <label for="cognome">Cognome:</label>
+          <input
+            type="text"
+            id="cognome"
+            name="cognome"
+            [(ngModel)]="model.cognome"
+            required
+          />
+          <label for="Username">Username:</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            [(ngModel)]="model.username"
+            required
+          />
+          <label for="email">Email:</label>
+          <input
+            type="text"
+            id="email"
+            name="email"
+            [(ngModel)]="model.email"
+            required
+          />
+          <label for="password">Password:</label>
+          <input
+            type="text"
+            id="password"
+            name="password"
+            [(ngModel)]="model.password"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <button type="submit">Invia</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

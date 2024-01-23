@@ -1,1 +1,51 @@
-<p>navbar works!</p>
+<!-- navbar-->
+<header class="header fixed-top" [ngClass]="headerClass">
+  <div class="container px-lg-3">
+    <nav class="navbar navbar-expand-lg navbar-light py-3 px-lg-0">
+      <a class="navbar-brand" href="index.html"
+        ><span class="logonavbar fw-bold "
+          >WRPsrLibrary</span
+        ></a
+      >
+      <button
+        class="navbar-toggler navbar-toggler-end"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span><i class="bi bi-three-dots-vertical"></i> </span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto" *ngIf="authService.isLoggedIn()">
+          <li class="nav-item">
+            <!-- Link--><a class="nav-link" href="faq">Catalogo libri</a>
+          </li>
+
+          <li class="nav-item">
+            <!-- Link--><a class="nav-link" href="annunci/bacheca-annunci"
+              >La mia libreria</a
+            >
+          </li>
+         
+        </ul>
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item" *ngIf="authService.isLoggedIn()">
+            <a class="nav-link" (click)="authService.logout()" href="/home">
+              <i class="fas fa-user text-gray fw-normal"></i>Logout</a
+            >
+          </li>
+          <li class="nav-item">
+            <!-- Aggiungi il link al profilo dell'utente -->
+            <a class="nav-link" [routerLink]="['/users']">
+              <i class="fas fa-user text-gray fw-normal"></i>Profilo
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</header>
+<router-outlet></router-outlet>

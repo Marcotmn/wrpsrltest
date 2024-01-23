@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { Route, RouterModule } from '@angular/router';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MylibraryComponent } from './components/mylibrary/mylibrary.component';
@@ -10,10 +12,13 @@ import { BookDetailsComponent } from './components/book-details/book-details.com
 import { PublishersComponent } from './components/publishers/publishers.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { HomeComponent } from './home/home.component';
-
+import { AuthGuard } from './auth/auth.guard';
 import { TokenInterceptor } from './auth/token.interceptor';
-import { RegisterComponent } from './auth/register/register.component';
+import { CommonModule } from '@angular/common';
+import { RegisterAdminComponent } from './auth/register-admin/register-admin.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './auth/login/login.component';
+import { RegisterUserComponent } from './auth/register-user/register-user.component';
 
 const routes: Route[] = [
   {
@@ -22,7 +27,11 @@ const routes: Route[] = [
   },
   {
     path: 'registrazione',
-    component: RegisterComponent,
+    component: RegisterUserComponent,
+  },
+  {
+    path: 'registrazione-admin',
+    component: RegisterAdminComponent,
   },
   {
     path: 'login',
@@ -37,8 +46,8 @@ const routes: Route[] = [
     component: BookDetailsComponent,
   },
   {
-    path: 'books/:idLibro',
-    component: BookDetailsComponent,
+    path: 'mylibrary/elenco',
+    component: MylibraryComponent,
   },
 ];
 
@@ -52,9 +61,26 @@ const routes: Route[] = [
     PublishersComponent,
     AdminComponent,
     HomeComponent,
+    RegisterUserComponent,
+    RegisterAdminComponent,
+    LoginComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
-  providers: [],
+
+  imports: [
+    CommonModule,
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    RouterModule,
+    HttpClientModule,
+    FormsModule,
+    RouterModule.forRoot(routes),
+  ],
+
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+  ],
+
   bootstrap: [AppComponent],
 })
 export class AppModule {}
